@@ -11,14 +11,27 @@
 }
 
 .Navigation-Bar {
-  /* position: absolute; */
+  position: fixed;
   left: 0px;
   top: 0px;
   right: 0px;
-  height: 50px;
+  height: 60px;
   width: 100%;
   z-index: 10;
-  background-color: green;
+  background-color: #1D1E1F;
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+}
+
+.Navigation-Title {
+  color:#949494;
+  font-size:20px;
+  font-family: "Helvetica";
 }
 
 .Container {
@@ -28,10 +41,17 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  background-color: #0000ff;
+  background-color: black;
   padding:20px;
+  padding-top:60px;
 
 }
+
+/* @media only screen and (min-width: 730px) {
+  [class*="Container"] {
+    padding-top:80px;
+  }
+} */
 
 .Row-Container {
 
@@ -40,9 +60,9 @@
 
   margin-top: 20px;
   /* padding: 20px; */
-  border-radius: 10px;
+  border-radius: 7px;
 
-  background-color: red;
+  background-color:#1D1E1F;
 
 }
 
@@ -55,11 +75,9 @@
   align-items: flex-start;
   padding: 20px;
 
-  /* background-color: white; */
-
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 830px) {
   /* For mobile phones: */
   [class*="Row-Container"] {
     width: 90vw;
@@ -70,23 +88,54 @@
 
   width:100%;
   flex-basis: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  text-align: center;
+  /* text-align: center; */
   padding-top:10px;
   padding-bottom:10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
   background-color: greenyellow;
+  font-size:15px;
+  font-family: "Helvetica";
+}
+
+.Collected-Button {
+
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  border-width: 0px;
+  color: #74F0B4;
+  font-size:15px;
+  font-family: "Helvetica";
+  background-color: black;
+
+}
+
+@media only screen and (min-width: 830px) {
+  /* For mobile phones: */
+  [class*="Collected-Button"] {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 }
 
 .Badge-Image {
 
-  width: 100px;
-  flex-basis: auto;
+  width: 50px;
+  height: 50px;
+  flex: none;
 
-  /* margin-right: 20px; */
+  display: block;
+  text-align: center;
 
-  background-color: yellow;
+  border-radius: 50%;
+  /* padding:10px; */
+
+  background-color: white;
 
 }
 
@@ -100,20 +149,25 @@
   flex-grow: 10;
 
   margin-left: 20px;
-  background-color: orange;
+  /* background-color: orange; */
 
 }
 
 .Badge-Title{
 
-  background-color: green;
+  color:#949494;
+  font-size:20px;
+  font-family: "Helvetica";
 
 }
 
 .Badge-Description{
-
+  padding-top: 10px;
   flex-grow: 10;
-  background-color: purple;
+  color: #949494;
+  font-size:16px;
+  font-family: "Helvetica";
+  /* background-color: red; */
 
 }
 
