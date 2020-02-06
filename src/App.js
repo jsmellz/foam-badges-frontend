@@ -6,6 +6,7 @@ import SilverImage from "./silver.png";
 import PilgrimImage from "./pilgrim.png";
 import TastemakerImage from "./tastemaker.png";
 import ShopaholicImage from "./shopaholic.png";
+import FoamHeader from "./foam-header.png";
 
 import {useEventListener} from './hooks/hooks';
 // import classnames from "classnames";
@@ -43,6 +44,18 @@ function App() {
       badgeDescription: "Verified points added with Retail tag.",
       image: ShopaholicImage,
       badgeState: "loading"
+    },
+    {
+      badgeName: "Tastemaker",
+      badgeDescription: "Verified points added with Food tag.",
+      image: TastemakerImage,
+      badgeState: "loading"
+    },
+    {
+      badgeName: "Shopaholic",
+      badgeDescription: "Verified points added with Retail tag.",
+      image: ShopaholicImage,
+      badgeState: "loading"
     }
   ]);
 
@@ -51,7 +64,7 @@ function App() {
   return (
       <div>
         <div className="Navigation-Bar">
-          <div className="Navigation-Title"> Foam Badges</div>
+          <div className="Navigation-Title"><img src={FoamHeader} style={{height:"30px"}}/><div>Badges</div></div>
         </div>
         <div className="Container"> 
           <div className="Background"/>

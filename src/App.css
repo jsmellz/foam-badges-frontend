@@ -18,7 +18,8 @@
   height: 60px;
   width: 100%;
   z-index: 10;
-  background-color: #1D1E1F;
+  background-color: rgba(0,0,0,.88);
+  border-bottom: 1px solid #222;
   display: flex; /* or inline-flex */
   flex-direction: row;
   flex-wrap: nowrap;
@@ -29,9 +30,12 @@
 }
 
 .Navigation-Title {
-  color:#949494;
+  color:white;
   font-size:20px;
-  font-family: "Helvetica";
+  font-family: 'Cerebri Sans', sans-serif;
+  display:flex;
+  align-items: center;
+  font-weight:250;
 }
 
 .Container {
@@ -44,6 +48,7 @@
   background-color: black;
   padding:20px;
   padding-top:60px;
+  padding-bottom:60px;
 
 }
 
@@ -62,7 +67,7 @@
   /* padding: 20px; */
   border-radius: 7px;
 
-  background-color:#1D1E1F;
+  background-color:#191A1A;
 
 }
 
@@ -93,24 +98,27 @@
   align-items: center;
 
   /* text-align: center; */
+  color:white;
   padding-top:10px;
   padding-bottom:10px;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   background-color: greenyellow;
   font-size:15px;
-  font-family: "Helvetica";
+  font-family: 'Cerebri Sans', sans-serif;
 }
 
 .Collected-Button {
 
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 10px;
+  padding-top:2px;
+  padding-bottom:2px;
+  border-radius: 14px;
   border-width: 0px;
   color: #74F0B4;
   font-size:15px;
-  font-family: "Helvetica";
+  font-family: 'Cerebri Sans', sans-serif;
   background-color: black;
 
 }
@@ -155,18 +163,17 @@
 
 .Badge-Title{
 
-  color:#949494;
+  color:white;
   font-size:20px;
-  font-family: "Helvetica";
-
+  font-family: 'Cerebri Sans', sans-serif;
 }
 
 .Badge-Description{
-  padding-top: 10px;
+  padding-top: 7px;
   flex-grow: 10;
-  color: #949494;
+  color: white;
   font-size:16px;
-  font-family: "Helvetica";
+  font-family: 'Cerebri Sans', sans-serif;
   /* background-color: red; */
 
 }
