@@ -10,11 +10,19 @@ import PilgrimImage from "./pilgrim.png";
 import TastemakerImage from "./tastemaker.png";
 import ShopaholicImage from "./shopaholic.png";
 import FoamHeader from "./foam-header.png";
-// import { InjectedConnector } from '@web3-react/injected-connector'
+import {useDataApi} from "./hooks/hooks"
 
 function App() {
 
-  const [address, setAddress] = useState();
+  const [url, setUrl] = useState('https://foam-badges-api.azurewebsites.net/api/GetBadges?code=hCaGRJkkobWcEJHGWinB/a3UKIeosu186xNdKoSbZYGXkl/dKhOuQQ==');
+
+  const [query, setQuery] = useState('redux');
+  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+    url,
+    { badges: [] },
+  );
+
+  const [initialLoad, setInitialLoad] = useState(false);
 
   const [badges, setBadges] = useState([
      {
@@ -51,49 +59,45 @@ function App() {
     {
       badgeName: "Tastemaker",
       badgeDescription: "Verified points added with Food tag.",
-      image: TastemakerImage,
-      // badgeState: "loading"
+      image: TastemakerImage
     },
     {
       badgeName: "Shopaholic",
       badgeDescription: "Verified points added with Retail tag.",
-      image: ShopaholicImage,
-      // badgeState: "loading"
+      image: ShopaholicImage
     }
   ]);
 
-  const [alertState, setAlertState] = useState("no-web3")
+  const changeToLoading = () => {
+    data.badges.forEach(badge => {
+      badge.badgeState = "loading"
+    });
+  }
 
-  // web3 setup
-
-  // const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] })
-
- 
-  // const Infura = new NetworkOnlyConnector({
-  //   providerURL: 'https://mainnet.infura.io/v3/...'
-  // })
- 
-  // const connectors = { MetaMask, Infura }
-  // const connectors = { MetaMask }
-
-  // console.log(context.account)
+  
   return (
-    // <Web3Provider
-    //   connectors
-    //   libraryName={'ethers.js'|'web3.js'|null}
-    // >
       <div>
         <div className="Container"> 
         <div className="Navigation-Bar">
           <div className="Navigation-Title"><img src={FoamHeader} style={{height:"30px"}}/><div>Badges</div></div>
         </div>
           <div className="Background"/>
-          <CheckProvider/>
-          {/* <AlertRow alertState={alertState}/> */}
-          {badges.map((badge, key) => <BadgeRow badge={badge} key={key}/>)}
+          <CheckProvider doFetch={doFetch} url={url}/>
+          {isError && <div>Something went wrong ...</div>}
+          
+          {isLoading ? (
+          
+            <div style={{color:"white"}}>Loading ...</div>
+            ) : (
+            <div>
+              { 
+                data.badges.map((badge, key) => <BadgeRow badge={badge} key={key}/> )
+              }
+            </div>
+          )}
+
         </div>
       </div>
-    // </Web3Provider>
   );
 }
 

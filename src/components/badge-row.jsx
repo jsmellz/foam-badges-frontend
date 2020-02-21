@@ -11,8 +11,8 @@ const BadgeRow = props => {
             <div className="Badge-Container"> 
                 <div className="Badge-Image"><img style={{width:"30px",height:"30px", padding:"10px"}} src={props.badge.image}/></div>
                 <div className="Badge-Text-Container">
-                    <div className="Badge-Title">{props.badge.badgeName}</div>
-                    <div className="Badge-Description">{props.badge.badgeDescription}</div>
+                    <div className="Badge-Title">{props.badge.name}</div>
+                    <div className="Badge-Description">{props.badge.description}</div>
                 </div>
             </div>
 

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/9ff4d450-cf70-4af1-9376-8bf5ee80a58d/resourceGroups/Foam_Badges/providers/Microsoft.Web/sites/foam-frontend",
+    "appService.deploySubpath": ""
+}

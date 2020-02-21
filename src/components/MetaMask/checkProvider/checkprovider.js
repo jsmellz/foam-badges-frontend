@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import Web3 from "web3";
-
-import WrongNetwork from "../wrongNetwork/wrongnetwork.js";
-import UnlockMetaMask from "../unlockMetaMask/unlockmetamask.js";
-import InstallMetaMask from "../installMetaMask/installmetamask.js";
-import UnlockAccount from "../unlockAccount/unlockaccount.js";
 import AlertRow from "../../alert-row"
-import App from "../../../App.js";
 
 class CheckProvider extends Component {
   constructor(props) {
@@ -18,14 +12,17 @@ class CheckProvider extends Component {
       isMetaMaskInstalled: false,
       isMetaMaskUnlocked: false,
       networkId: -1,
-      address: "",
-      alertState: "no-metamask"
+      address: ""
     };
   }
 
   componentDidMount = () => {
+
     if (window.ethereum) {
+
       window.web3 = new Web3(window.ethereum);
+      // added this here 
+      this.isMetaMaskInstalled();
 
       window.ethereum
         .enable()
@@ -33,13 +30,14 @@ class CheckProvider extends Component {
           this.isMetaMaskInstalled();
         })
         .catch(err => {
-          console.log(err);
+          console.log("ERR",err);
         });
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
 
       this.isMetaMaskInstalled();
-    }
+    } 
+
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -49,7 +47,7 @@ class CheckProvider extends Component {
       networkId,
       address
     } = this.state;
-
+ 
     if (
       isMetaMaskInstalled !== prevState.isMetaMaskInstalled ||
       isMetaMaskUnlocked !== prevState.isMetaMaskUnlocked ||
@@ -57,7 +55,7 @@ class CheckProvider extends Component {
       address !== prevState.address
     ) {
       this.isMetaMaskInstalled();
-    }
+    } 
   };
 
   getAddress = () => {
@@ -73,23 +71,8 @@ class CheckProvider extends Component {
       });
   };
 
-  getNetwork = () => {
-    window.web3.eth.net
-      .getId()
-      .then(networkId => {
-        // console.log("network", networkId);
-        this.setState({
-          networkId
-        });
-
-        this.getAddress();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   isMetaMaskInstalled = () => {
+
     if (Web3.givenProvider && window.web3 && window.web3.currentProvider) {
       this.setState({
         isMetaMaskInstalled: true
@@ -116,6 +99,22 @@ class CheckProvider extends Component {
       });
   };
 
+  getNetwork = () => {
+    window.web3.eth.net
+      .getId()
+      .then(networkId => {
+        // console.log("network", networkId);
+        this.setState({
+          networkId
+        });
+
+        this.getAddress();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   checkMetaMask = () => {
     const {
       isMetaMaskInstalled,
@@ -125,12 +124,12 @@ class CheckProvider extends Component {
     } = this.state;
 
     if (isMetaMaskInstalled === false) {
-      console.log("metamask is not installed")
+      console.log("metamask is not installed", this.state.isMetaMaskInstalled)
       return <AlertRow alertState={"installMetaMask"} />;
-    }
+    } 
 
     if (isMetaMaskUnlocked === false) {
-      console.log("metamask is locked")
+      console.log("metamask is locked", this.state.isMetaMaskUnlocked)
       return <AlertRow alertState={"unlockMetaMask"} />;
     }
 
@@ -143,8 +142,10 @@ class CheckProvider extends Component {
       console.log("ADDRESs is blank")
       return <AlertRow alertState={"unlockAccount"} />;
     }
+
     console.log("ADDRESS", address)
-    return <AlertRow alertState={""} address={address}/>;
+    this.props.doFetch(this.props.url)
+    return <AlertRow alertState={""} address={address} />;
   };
 
   render() {
