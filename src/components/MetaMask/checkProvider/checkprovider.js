@@ -144,7 +144,7 @@ class CheckProvider extends Component {
     }
 
     console.log("ADDRESS", address)
-    this.props.doFetch(this.props.url)
+    this.props.doFetch(this.props.url + "?address=address1")
     return <AlertRow alertState={""} address={address} />;
   };
 

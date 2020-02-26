@@ -1,0 +1,6 @@
+{ "Badges":[
+
+"PutRequest": {
+                "Item":{"_id":"5e472bd22b96e7660e46ea4e","token-id":"00","name":"Stone Cartographer","description":"3 verified points added.","image":"stone-cartographer","qualifications":{"type":"quantity","quantity":3,"tag":"all"}
+                }
+]}

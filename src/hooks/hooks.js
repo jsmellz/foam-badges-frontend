@@ -1,6 +1,15 @@
 import {useEffect, useReducer, useState} from 'react';
 import axios from 'axios';
 
+var fs = require('fs');
+
+const file = './data.json'
+const obj = { name: 'JP' }
+ 
+// jsonfile.writeFile(file, obj, function (err) {
+//   if (err) console.error(err)
+// })
+
 // Hook
 export const useDataApi = (initialUrl, initialData) => {
   const [url, setUrl] = useState(initialUrl);
@@ -17,8 +26,12 @@ export const useDataApi = (initialUrl, initialData) => {
       try {
         const result = await axios(url);
         if (!didCancel) {
+          // console.log("HERE", result)
           dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-          console.log(result.data.badges)
+          // console.log("HERE", result.data)
+          // let data = JSON.stringify(result.data.badges);
+          // console.log(data)
+
         }
       } catch (error) {
         if (!didCancel) {

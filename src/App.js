@@ -14,7 +14,7 @@ import {useDataApi} from "./hooks/hooks"
 
 function App() {
 
-  const [url, setUrl] = useState('https://foam-badges-api.azurewebsites.net/api/GetBadges?code=hCaGRJkkobWcEJHGWinB/a3UKIeosu186xNdKoSbZYGXkl/dKhOuQQ==');
+  const [url, setUrl] = useState('https://k2m25ghrv9.execute-api.us-west-2.amazonaws.com/default/GetBadges');
 
   const [query, setQuery] = useState('redux');
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
@@ -84,10 +84,11 @@ function App() {
           <div className="Background"/>
           <CheckProvider doFetch={doFetch} url={url}/>
           {isError && <div>Something went wrong ...</div>}
-          
+
           {isLoading ? (
-          
-            <div style={{color:"white"}}>Loading ...</div>
+            
+              <div style={{color:"white"}}>Loading ...</div>
+
             ) : (
             <div>
               { 
